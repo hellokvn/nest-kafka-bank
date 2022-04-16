@@ -3,6 +3,6 @@ import { QueryModule } from './query/query.module';
 import { CmdModule } from './cmd/cmd.module';
 
 @Module({
-  imports: [QueryModule, CmdModule],
+  imports: [CmdModule],
 })
 export class AppModule {}

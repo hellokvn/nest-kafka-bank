@@ -1,9 +1,15 @@
 import { Controller, OnModuleInit, Get, Body } from '@nestjs/common';
+import { QueryBus } from '@nestjs/cqrs';
+import { AllAccountsQuery } from '../queries/impl/all-accounts.query';
 
 @Controller('/api/v1/lookup/account')
 export class AccountController {
+  constructor(private queryBus: QueryBus) {}
+
   @Get()
-  public getAllAccounts(): any {
-    console.log('get getAllAccounts', new Date());
+  public getAllAccounts(): Promise<any> {
+    const query: AllAccountsQuery = new AllAccountsQuery();
+
+    return this.queryBus.execute(query);
   }
 }

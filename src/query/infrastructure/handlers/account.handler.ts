@@ -11,7 +11,7 @@ export class AccountHandler {
   private repository: AccountRepository;
 
   @OnEvent('AccountOpenedEvent')
-  private handleOrderCreatedEvent(event: any) {
+  private handleOrderCreatedEvent(event: any): void {
     // handle and process "OrderCreatedEvent" event
     console.log(event);
 
