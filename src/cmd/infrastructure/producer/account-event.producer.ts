@@ -21,7 +21,7 @@ export class AccountEventProducer implements EventProducer {
     this.producer.connect();
   }
 
-  public produce(topic: string, event: AccountOpenedEvent): void {
+  public produce<T>(topic: string, event: T): void {
     console.log('AccountEventProducer/produce', topic);
     this.producer.send({ topic: 'test-topicc', messages: [{ value: JSON.stringify(event) }] });
   }

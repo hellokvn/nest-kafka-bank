@@ -9,18 +9,18 @@ import { EventModel } from '../../domain/entity/event.model';
 import { COMMAND_DATABASE_CONNECTION } from '@/common/constants/database.constants';
 
 @EventsHandler(AccountOpenedEvent)
-export class AccountOpenedHandler implements IEventHandler<AccountOpenedEvent> {
+export class AccountEventStoreHandler implements IEventHandler<AccountOpenedEvent> {
   @InjectRepository(EventStoreRepository, COMMAND_DATABASE_CONNECTION)
   private eventStoreRepository: EventStoreRepository;
 
   @Inject(AccountEventProducer)
   private eventProducer: AccountEventProducer;
 
-  public async handle(event: AccountOpenedEvent) {
+  public async handle<T>(event: T) {
     console.log('AccountOpenedHandler/handle');
     // const eventStream: EventModel[] = await this.eventStoreRepository.findByAggregateIdentifier('1');
 
-    console.log('OpenAccountHandler/execute OpenAccountCommand');
+    // console.log('OpenAccountHandler/execute OpenAccountCommand');
 
     const eventModel: EventModel = new EventModel();
     eventModel.aggregateIdentifier = '1';
